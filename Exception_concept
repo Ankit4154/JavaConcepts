@@ -1,0 +1,26 @@
+/*#################Exception Concepts ################*/
+// If exception is thrown using throw keyword
+// then it must execute finally first
+// afterwards the exception error message will be displayed
+// Base/Parent Exception class always bottom
+// Derive/Child Exception class always top  else compile-time error
+public class ExceptionTest {
+    public static void main(String args[]) throws Exception{
+       try {
+            System.out.print(Integer.parseInt("an"));
+        }catch(NumberFormatException ne){
+            System.out.println("foo");
+            throw new Exception();
+        }finally {
+            System.out.println("finally baar");
+        }
+    }
+}
+/* Output : 
+foo
+finally baar
+
+Exception in thread "main" java.lang.Exception
+	at ExceptionTest.main(ExceptionTest.java:7)
+Command exited with non-zero status 1
+*/

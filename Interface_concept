@@ -1,0 +1,33 @@
+/* ##################### Interface Concept ########################### */
+/* Variable will have the value of the Interface/Class varible to which it is referenced
+-- irrespective of which Class it is initalized with
+-- Example : Interface1 i = new ImplementingClass().varName will accesss
+-- value of variable defined in the interface.
+*/
+interface Kamehameha {
+    static int i = 1;
+    void display();
+}
+interface Kaioken extends Kamehameha {
+    int i = 5;
+}
+ class Goku implements Kaioken {
+    int i = 8;
+    public void display() {
+        System.out.println("var goku i:"+i);
+    }
+}
+public class Gohan extends Goku {
+    int i = 9;
+    public void display() {
+        System.out.println("var gohan i:"+i);
+    }
+    public static void main(String[] args) {
+        Kamehameha k = new Gohan();
+        k.display(); // var gohan i:9   ../as it is method initialized by Gohan() constructor
+        System.out.println(k.i); // 1 ../as the varible is defined in the interface Kamehameha
+        Kaioken k2 = new Goku();
+        k2.display(); // var goku i:8  ../as it is method initialized by Goku() constructor
+        System.out.println(k2.i); // 5  ../as the varible is defined in the interface Kaioken
+    }
+}

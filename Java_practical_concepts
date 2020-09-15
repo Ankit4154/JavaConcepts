@@ -1,0 +1,47 @@
+// Weaker access privileges
+// Cannot go from public -> protected or protected -> private in Base Class
+// Static Concept : if methods are static Class Method value will be 
+// assigned to new Object at the time of creation
+// Base b = new Derive() -> Base... in case of static Otherwise -> Derive 
+// In case of varibles value will be specific to the class only
+// in which it is defined as scope of variable is for class
+// and no overriding happens for variables
+class Base {
+    protected static String name = "ankit";
+    public int val = 5;
+    protected static void kat(){
+        System.out.println("Base");
+    }
+    protected void meth2(){
+        System.out.println("Base Method 2");
+    }
+}
+
+class Derive extends Base {
+    public static String name = "singh";
+    protected int val = 10;
+    protected static void kat(){
+        System.out.println("Derive");
+    }
+    public void meth2(){
+        System.out.println("Derive Method 2");
+    }
+    
+}
+
+public class HelloWorld{
+
+     public static void main(String []args){
+        Base b = new Derive();
+        b.kat(); // Base  .../as it is static method
+        b.meth2(); // Derive Meth 2  ../as it is non-static method
+        System.out.println(b.name); // ankit  ../as local class level variable
+        System.out.println(b.val); // 
+        Derive d = (Derive)b;
+        d.kat(); // Derive  ../as it is now initialized by derive class variable 
+                // works for static keyword as well as if new Derive() is called
+        d.meth2(); // Derive Method 2  ../as it is non-static local method
+        System.out.println(d.name); // singh ../as everything now is of Derive class
+        System.out.println(d.val);  // 10  ../no explanation needed I guess
+     }
+}
